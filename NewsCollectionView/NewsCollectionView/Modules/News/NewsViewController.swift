@@ -48,7 +48,7 @@ extension NewsViewController: NewsViewInput {
 extension NewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let ratio: CGFloat = 1.3
-        let width = collectionView.frame.width
+        let width = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
         let height = width * ratio
         return CGSize(width: width, height: height)
     }
@@ -60,8 +60,9 @@ extension NewsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueCell(cellType: UICollectionViewCell.self, for: indexPath)
-        cell.backgroundColor = .brown
+        let cell = collectionView.dequeueCell(cellType: NewsViewCell<NewsCardView>.self, for: indexPath)
+        let viewModel = NewsCardViewModel(title: "cell\(indexPath.item)", imageName: "news1")
+        cell.containerView.update(with: viewModel)
         return cell
     }
 }
@@ -70,7 +71,8 @@ private extension NewsViewController {
     func setupCollectionView() {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.register(UICollectionViewCell.self)
+        self.collectionView.register(NewsViewCell<NewsCardView>.self)
         self.collectionView.backgroundColor = .white
+        self.collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
 }

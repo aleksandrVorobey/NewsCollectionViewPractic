@@ -18,6 +18,9 @@
 		A6940F472656B20C004B3A19 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6940F412656B20C004B3A19 /* NewsInteractor.swift */; };
 		A6940F482656B20C004B3A19 /* NewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6940F422656B20C004B3A19 /* NewsContainer.swift */; };
 		A6940F4B2656F1AC004B3A19 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6940F4A2656F1AC004B3A19 /* ReuseIdentifier.swift */; };
+		A6940F4F2656F864004B3A19 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6940F4E2656F864004B3A19 /* NewsViewCell.swift */; };
+		A6940F512656FBEA004B3A19 /* NewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6940F502656FBEA004B3A19 /* NewsCardView.swift */; };
+		A6940F542657A32F004B3A19 /* NewsCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6940F532657A32F004B3A19 /* NewsCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		A6940F412656B20C004B3A19 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		A6940F422656B20C004B3A19 /* NewsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContainer.swift; sourceTree = "<group>"; };
 		A6940F4A2656F1AC004B3A19 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		A6940F4E2656F864004B3A19 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
+		A6940F502656FBEA004B3A19 /* NewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCardView.swift; sourceTree = "<group>"; };
+		A6940F532657A32F004B3A19 /* NewsCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +86,7 @@
 		A6940F3C2656B1E2004B3A19 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				A6940F422656B20C004B3A19 /* NewsContainer.swift */,
-				A6940F412656B20C004B3A19 /* NewsInteractor.swift */,
-				A6940F3D2656B20C004B3A19 /* NewsPresenter.swift */,
-				A6940F402656B20C004B3A19 /* NewsProtocols.swift */,
-				A6940F3E2656B20C004B3A19 /* NewsRouter.swift */,
-				A6940F3F2656B20C004B3A19 /* NewsViewController.swift */,
+				A6940F4C2656F7ED004B3A19 /* News */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -96,6 +97,38 @@
 				A6940F4A2656F1AC004B3A19 /* ReuseIdentifier.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A6940F4C2656F7ED004B3A19 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				A6940F522657A307004B3A19 /* ViewModels */,
+				A6940F4D2656F80D004B3A19 /* Views */,
+				A6940F422656B20C004B3A19 /* NewsContainer.swift */,
+				A6940F412656B20C004B3A19 /* NewsInteractor.swift */,
+				A6940F3D2656B20C004B3A19 /* NewsPresenter.swift */,
+				A6940F402656B20C004B3A19 /* NewsProtocols.swift */,
+				A6940F3E2656B20C004B3A19 /* NewsRouter.swift */,
+				A6940F3F2656B20C004B3A19 /* NewsViewController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		A6940F4D2656F80D004B3A19 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6940F4E2656F864004B3A19 /* NewsViewCell.swift */,
+				A6940F502656FBEA004B3A19 /* NewsCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6940F522657A307004B3A19 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A6940F532657A32F004B3A19 /* NewsCardViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,12 +201,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6940F482656B20C004B3A19 /* NewsContainer.swift in Sources */,
+				A6940F542657A32F004B3A19 /* NewsCardViewModel.swift in Sources */,
 				A6940F0F26569B8F004B3A19 /* AppDelegate.swift in Sources */,
 				A6940F4B2656F1AC004B3A19 /* ReuseIdentifier.swift in Sources */,
 				A6940F1126569B8F004B3A19 /* SceneDelegate.swift in Sources */,
 				A6940F452656B20C004B3A19 /* NewsViewController.swift in Sources */,
 				A6940F442656B20C004B3A19 /* NewsRouter.swift in Sources */,
+				A6940F512656FBEA004B3A19 /* NewsCardView.swift in Sources */,
 				A6940F432656B20C004B3A19 /* NewsPresenter.swift in Sources */,
+				A6940F4F2656F864004B3A19 /* NewsViewCell.swift in Sources */,
 				A6940F462656B20C004B3A19 /* NewsProtocols.swift in Sources */,
 				A6940F472656B20C004B3A19 /* NewsInteractor.swift in Sources */,
 			);
