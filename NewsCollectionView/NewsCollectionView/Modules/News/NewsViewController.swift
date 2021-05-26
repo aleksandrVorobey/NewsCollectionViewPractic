@@ -40,7 +40,6 @@ final class NewsViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         self.output.viewDidLoad()
-        self.navigationItem.title = Localization.main
 	}
 }
 
