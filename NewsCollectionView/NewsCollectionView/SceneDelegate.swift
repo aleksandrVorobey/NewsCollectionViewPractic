@@ -9,6 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    private var appCoordinator: AppCoordinator?
     var window: UIWindow?
 
 
@@ -17,12 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let context = NewsContext(moduleOutput: nil)
-        let container = NewsContainer.assemble(with: context)
-        
-        window.rootViewController = container.viewController
-        window.makeKeyAndVisible()
+        self.appCoordinator = AppCoordinator(window: window)
         self.window = window
+        self.appCoordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

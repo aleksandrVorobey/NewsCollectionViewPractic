@@ -11,6 +11,8 @@ import UIKit
 final class NewsViewController: UIViewController {
 	private let output: NewsViewOutput
     private let collectionView: UICollectionView
+    
+    private var viewModels = [NewsCardViewModel]()
 
     init(output: NewsViewOutput) {
         self.output = output
@@ -32,17 +34,22 @@ final class NewsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.collectionView.frame = self.view.frame
+        self.collectionView.frame = self.view.bounds
     }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        self.view.backgroundColor = .green
+        self.output.viewDidLoad()
+        self.navigationItem.title = Localization.main
 	}
 }
 
 extension NewsViewController: NewsViewInput {
-    
+    func set(viewModels: [NewsCardViewModel]) {
+        self.viewModels = viewModels
+        self.collectionView.reloadData()
+    }
+        
 }
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout {
@@ -56,12 +63,13 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
 
 extension NewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let viewModel = self.viewModels[indexPath.item]
         let cell = collectionView.dequeueCell(cellType: NewsViewCell<NewsCardView>.self, for: indexPath)
-        let viewModel = NewsCardViewModel(title: "cell\(indexPath.item)", imageName: "news1")
+        //let viewModel = NewsCardViewModel(title: "cell\(indexPath.item)", imageName: "news1")
         cell.containerView.update(with: viewModel)
         return cell
     }

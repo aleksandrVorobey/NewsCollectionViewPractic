@@ -12,20 +12,22 @@ protocol NewsModuleInput {
 	var moduleOutput: NewsModuleOutput? { get }
 }
 
-protocol NewsModuleOutput: class {
+protocol NewsModuleOutput: AnyObject {
 }
 
-protocol NewsViewInput: class {
+protocol NewsViewInput: AnyObject {
+    func set(viewModels: [NewsCardViewModel])
 }
 
-protocol NewsViewOutput: class {
+protocol NewsViewOutput: AnyObject {
+    func viewDidLoad()
 }
 
-protocol NewsInteractorInput: class {
+protocol NewsInteractorInput: AnyObject {
 }
 
-protocol NewsInteractorOutput: class {
+protocol NewsInteractorOutput: AnyObject {
 }
 
-protocol NewsRouterInput: class {
+protocol NewsRouterInput: AnyObject {
 }

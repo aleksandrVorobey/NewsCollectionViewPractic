@@ -8,6 +8,8 @@
 import Foundation
 
 struct NewsCardViewModel {
+    let info: String
     let title: String
+    let shortDescription: String
     let imageName: String
 }

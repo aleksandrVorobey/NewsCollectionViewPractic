@@ -19,13 +19,27 @@ final class NewsPresenter {
         self.router = router
         self.interactor = interactor
     }
+    
+    
 }
 
 extension NewsPresenter: NewsModuleInput {
 }
 
 extension NewsPresenter: NewsViewOutput {
+    func viewDidLoad() {
+        self.view?.set(viewModels: self.makeViewModels())
+    }
+    
 }
 
 extension NewsPresenter: NewsInteractorOutput {
+}
+
+private extension NewsPresenter {
+    func makeViewModels() -> [NewsCardViewModel] {
+        return [NewsCardViewModel(info: "Test string", title: "BIG Text", shortDescription: "Description", imageName: "news1"),
+                NewsCardViewModel(info: "Test string2", title: "BIG Text2", shortDescription: "Description2", imageName: "news2"),
+                NewsCardViewModel(info: "Test string3", title: "BIG Text3", shortDescription: "Description3", imageName: "news3")]
+    }
 }
