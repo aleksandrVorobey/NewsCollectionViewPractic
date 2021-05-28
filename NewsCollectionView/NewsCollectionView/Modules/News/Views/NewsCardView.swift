@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsCardView: UIView {
     
@@ -33,7 +34,7 @@ class NewsCardView: UIView {
         self.titleLabel.textColor = .white
         
         self.shortDescriptionLabel.font = Font.system(ofSize: 18, weight: .regular)
-        self.shortDescriptionLabel.textColor = .black
+        self.shortDescriptionLabel.textColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -59,8 +60,6 @@ class NewsCardView: UIView {
         
         self.titleLabel.frame.origin = titleLabelOrigin
         self.titleLabel.frame.size = titleLabelSize
-        //self.titleLabel.sizeToFit()
-        
         self.imageView.frame = self.frame
     }
     
@@ -68,7 +67,7 @@ class NewsCardView: UIView {
         self.infoLabel.text = viewModel.info
         self.titleLabel.text = viewModel.title
         self.shortDescriptionLabel.text = viewModel.shortDescription
-        self.imageView.image = UIImage(named: viewModel.imageName)
+        self.imageView.setImage(with: URL(string: viewModel.imageName))
         self.setNeedsLayout()
     }
     
