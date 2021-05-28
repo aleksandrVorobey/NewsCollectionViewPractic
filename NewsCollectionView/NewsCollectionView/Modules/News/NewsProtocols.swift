@@ -24,9 +24,12 @@ protocol NewsViewOutput: AnyObject {
 }
 
 protocol NewsInteractorInput: AnyObject {
+    func loadArticles()
 }
 
 protocol NewsInteractorOutput: AnyObject {
+    func didEncounterError(_ error: Error)
+    func didLoad(_ articles: [Article])
 }
 
 protocol NewsRouterInput: AnyObject {

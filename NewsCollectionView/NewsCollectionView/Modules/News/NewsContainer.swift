@@ -15,7 +15,7 @@ final class NewsContainer {
 
 	static func assemble(with context: NewsContext) -> NewsContainer {
         let router = NewsRouter()
-        let interactor = NewsInteractor()
+        let interactor = NewsInteractor(articlesNetworkService: context.moduleDependencies.articlesNetworkService)
         let presenter = NewsPresenter(router: router, interactor: interactor)
 		let viewController = NewsViewController(output: presenter)
 
@@ -35,5 +35,7 @@ final class NewsContainer {
 }
 
 struct NewsContext {
+    typealias ModuleDependencies = HasArticlesNetworkService
+    let moduleDependencies: ModuleDependencies
 	weak var moduleOutput: NewsModuleOutput?
 }

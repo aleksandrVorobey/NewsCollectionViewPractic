@@ -15,6 +15,8 @@ final class NewsPresenter {
 	private let router: NewsRouterInput
 	private let interactor: NewsInteractorInput
     
+    private var articles: [Article] = []
+    
     init(router: NewsRouterInput, interactor: NewsInteractorInput) {
         self.router = router
         self.interactor = interactor
@@ -28,18 +30,31 @@ extension NewsPresenter: NewsModuleInput {
 
 extension NewsPresenter: NewsViewOutput {
     func viewDidLoad() {
-        self.view?.set(viewModels: self.makeViewModels())
+        self.interactor.loadArticles()
     }
     
 }
 
 extension NewsPresenter: NewsInteractorOutput {
+    func didEncounterError(_ error: Error) {
+        //ToDo
+    }
+    
+    func didLoad(_ articles: [Article]) {
+        self.articles = articles
+        self.view?.set(viewModels: self.makeViewModels(self.articles))
+    }
+    
+    
 }
 
 private extension NewsPresenter {
-    func makeViewModels() -> [NewsCardViewModel] {
-        return [NewsCardViewModel(info: "Test string", title: "BIG Text", shortDescription: "Description", imageName: "news1"),
-                NewsCardViewModel(info: "Test string2", title: "BIG Text2", shortDescription: "Description2", imageName: "news2"),
-                NewsCardViewModel(info: "Test string3", title: "BIG Text3", shortDescription: "Description3", imageName: "news3")]
+    func makeViewModels(_ articles: [Article]) -> [NewsCardViewModel] {
+        return articles.map { article in
+            NewsCardViewModel(info: "info",
+                              title: article.title ?? "",
+                              shortDescription: article.description ?? "",
+                              imageName: article.urlToImage ?? "")
+        }
     }
 }
