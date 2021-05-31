@@ -15,6 +15,10 @@ final class NewsPresenter {
 	private let router: NewsRouterInput
 	private let interactor: NewsInteractorInput
     
+    private var isNextPageLoading = false
+    private var isRealoding = false
+    private var hasNextPage = true
+    
     private var articles: [Article] = []
     
     init(router: NewsRouterInput, interactor: NewsInteractorInput) {
@@ -29,10 +33,19 @@ extension NewsPresenter: NewsModuleInput {
 }
 
 extension NewsPresenter: NewsViewOutput {
+    
     func viewDidLoad() {
-        self.interactor.loadArticles()
+        self.isRealoding = true
+        self.interactor.reload()
     }
     
+    func willDisplay(at index: Int) {
+        guard !self.isRealoding,
+              !self.isNextPageLoading,
+              (self.articles.count - index) < 10 else { return }
+        self.isNextPageLoading = true
+        self.interactor.loadNext()
+    }
 }
 
 extension NewsPresenter: NewsInteractorOutput {
@@ -40,9 +53,18 @@ extension NewsPresenter: NewsInteractorOutput {
         //ToDo
     }
     
-    func didLoad(_ articles: [Article]) {
-        self.articles = articles
-        self.view?.set(viewModels: self.makeViewModels(self.articles))
+    func didLoad(_ articles: [Article], loadType: LoadingDataType) {
+        switch loadType {
+        case .reload:
+            self.isRealoding = false
+            self.articles = articles
+        case .nextPage:
+            self.isNextPageLoading = false
+            self.hasNextPage = articles.count > 0
+            self.articles.append(contentsOf: articles)
+        }
+        let viewModels: [NewsCardViewModel] = self.makeViewModels(self.articles)
+        self.view?.set(viewModels: viewModels)
     }
     
     

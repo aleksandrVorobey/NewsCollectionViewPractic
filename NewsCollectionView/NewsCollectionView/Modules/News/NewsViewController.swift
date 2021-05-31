@@ -53,11 +53,16 @@ extension NewsViewController: NewsViewInput {
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let ratio: CGFloat = 1.3
+        let ratio: CGFloat = 1.2
         let width = collectionView.frame.width - collectionView.contentInset.left - collectionView.contentInset.right
         let height = width * ratio
         return CGSize(width: width, height: height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.output.willDisplay(at: indexPath.item)
+    }
+    
 }
 
 extension NewsViewController: UICollectionViewDataSource {

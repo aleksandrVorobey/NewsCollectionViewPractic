@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum LoadingDataType {
+    case nextPage
+    case reload
+}
+
 protocol NewsModuleInput {
 	var moduleOutput: NewsModuleOutput? { get }
 }
@@ -21,15 +26,17 @@ protocol NewsViewInput: AnyObject {
 
 protocol NewsViewOutput: AnyObject {
     func viewDidLoad()
+    func willDisplay(at index: Int)
 }
 
 protocol NewsInteractorInput: AnyObject {
-    func loadArticles()
+    func reload()
+    func loadNext()
 }
 
 protocol NewsInteractorOutput: AnyObject {
     func didEncounterError(_ error: Error)
-    func didLoad(_ articles: [Article])
+    func didLoad(_ articles: [Article], loadType: LoadingDataType)
 }
 
 protocol NewsRouterInput: AnyObject {
